@@ -78,6 +78,19 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      {
+        source: "/Jayesh_Purohit_Resume.pdf",
+        headers: [
+          {
+            key: "Content-Disposition",
+            value: 'attachment; filename="Jayesh_Purohit_Resume.pdf"',
+          },
+          {
+            key: "Content-Type",
+            value: "application/pdf",
+          },
+        ],
+      },
     ];
   },
 };

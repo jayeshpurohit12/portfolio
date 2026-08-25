@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
-import { Menu, X, Terminal, ArrowUpRight } from "lucide-react";
+import { Menu, X, Terminal, ArrowUpRight, Download } from "lucide-react";
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -177,7 +177,17 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Desktop Right CTA (Visible on lg+) */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-2.5">
+            <a
+              href="/api/resume"
+              download="Jayesh_Purohit_Resume.pdf"
+              className="btn-outline text-xs py-2 px-3 flex items-center gap-1.5 cursor-pointer hover:border-[#2e5bff]"
+              title="Download Jayesh Purohit Resume (PDF)"
+            >
+              <Download className="w-3.5 h-3.5 text-[#b8c3ff]" />
+              <span>Resume</span>
+            </a>
+
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, "contact")}
@@ -237,6 +247,15 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div className="flex flex-col gap-3 pt-6 mt-6 border-t border-[#434656]">
+            <a
+              href="/api/resume"
+              download="Jayesh_Purohit_Resume.pdf"
+              className="btn-outline w-full py-2.5 text-center text-xs sm:text-sm font-mono flex items-center justify-center gap-2"
+            >
+              <Download className="w-4 h-4 text-[#b8c3ff]" />
+              <span>Download Resume (PDF)</span>
+            </a>
+
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, "contact")}

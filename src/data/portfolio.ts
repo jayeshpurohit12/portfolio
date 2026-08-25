@@ -65,6 +65,7 @@ export const portfolioData = {
     email: process.env.NEXT_PUBLIC_CONTACT_EMAIL!,
     phone: process.env.NEXT_PUBLIC_CONTACT_PHONE!,
     location: process.env.NEXT_PUBLIC_CONTACT_LOCATION!,
+    resume: "/Jayesh_Purohit_Resume.pdf",
     socials: {
       github: process.env.NEXT_PUBLIC_GITHUB_URL!,
       linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL!,

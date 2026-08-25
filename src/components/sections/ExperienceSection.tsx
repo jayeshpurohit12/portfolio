@@ -216,15 +216,19 @@ export const ExperienceSection: React.FC = () => {
                 Download Comprehensive CV
               </h5>
               <p className="text-xs text-[#c4c5d9] mt-1 font-mono">
-                Technical Stack & Full Project History
+                React Native & Native Mobile History (PDF)
               </p>
             </div>
 
             <a
-              href="mailto:jayesh.purohit.yt@gmail.com?subject=Requesting%20Jayesh%20Purohit%20Resume"
-              className="btn-outline w-full py-2.5 text-xs text-center flex items-center justify-center gap-2"
+              href="/Jayesh_Purohit_Resume.pdf"
+              download="Jayesh_Purohit_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary w-full py-2.5 text-xs text-center flex items-center justify-center gap-2 cursor-pointer shadow-md"
             >
-              <span>Request Direct Resume</span>
+              <Download className="w-3.5 h-3.5" />
+              <span>Download Resume (PDF)</span>
             </a>
           </motion.div>
 
