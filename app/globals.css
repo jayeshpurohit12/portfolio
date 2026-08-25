@@ -83,8 +83,6 @@ body {
   color: var(--color-on-background);
   font-family: var(--font-geist);
   overflow-x: hidden;
-  selection-background-color: var(--color-primary-container);
-  selection-color: var(--color-on-primary-container);
 }
 
 ::selection {
@@ -376,6 +374,7 @@ body {
   padding: 1px;
   background: linear-gradient(90deg, transparent, #2e5bff, transparent);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
