@@ -40,7 +40,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(webSiteSchema) }}
       />
 
-      {/* Interactive Cursor Spotlight & Constellation Particles */}
+      {/* Interactive Cursor Spotlight, Constellation Particles & 3D Wave Field */}
       <InteractiveBackground />
 
       {/* Top Navbar */}

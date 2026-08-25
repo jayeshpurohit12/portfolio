@@ -60,7 +60,7 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.1.164", "localhost"],
   // Aggressively tree-shake and strip unused JavaScript modules
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: ["three", "lucide-react", "framer-motion"],
   },
   images: {
     formats: ["image/avif", "image/webp"],

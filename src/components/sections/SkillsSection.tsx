@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { SectionHeader } from "@/components/common/SectionHeader";
@@ -13,9 +14,23 @@ import {
   Wrench,
   CheckCircle2,
 } from "lucide-react";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+
+const Skills3DOrbit = dynamic(
+  () => import("@/components/3d/Skills3DOrbit").then((m) => m.Skills3DOrbit),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[320px] sm:h-[380px] flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full border-2 border-[#2e5bff]/30 border-t-[#2e5bff] animate-spin" />
+      </div>
+    ),
+  },
+);
 
 export const SkillsSection: React.FC = () => {
   const { skillsCategories, achievements } = portfolioData;
+  const isDesktop = useIsDesktop();
 
   const coreLanguages =
     skillsCategories.find((c) => c.title === "Core Languages")?.skills || [];
@@ -40,6 +55,32 @@ export const SkillsSection: React.FC = () => {
 
       {/* Bento Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Card: 3D Interactive Tech Polyhedron Matrix (Desktop) */}
+        {isDesktop && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="hidden md:flex glass-panel p-4 sm:p-6 rounded-xl border border-[#2e5bff]/50 lg:col-span-1 flex-col items-center justify-between shadow-xl bg-gradient-to-b from-[#152031] to-[#0d1626] relative overflow-hidden group hover:border-[#2e5bff]"
+          >
+            <div className="w-full flex items-center justify-between border-b border-[#434656]/50 pb-2 mb-2">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#b8c3ff]">
+                <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse" />
+                <span>3D TECH MATRIX</span>
+              </div>
+              <span className="text-[10px] font-mono text-[#8e90a2]">
+                WebGL 60FPS
+              </span>
+            </div>
+
+            <Skills3DOrbit />
+
+            <div className="w-full text-center font-mono text-[11px] text-[#c4c5d9] pt-2 border-t border-[#434656]/40">
+              Interactive Orbit • React Native Core
+            </div>
+          </motion.div>
+        )}
         {/* Card 1: Core Languages (Span 2 on lg) */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -157,30 +198,37 @@ export const SkillsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="glass-panel p-6 sm:p-8 rounded-xl border border-[#434656] lg:col-span-1 hover:border-[#2e5bff] transition-all shadow-xl group"
+          className="glass-panel p-6 sm:p-8 rounded-xl border border-[#434656] lg:col-span-3 hover:border-[#2e5bff] transition-all shadow-xl group"
         >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2.5 rounded-lg bg-[#1f2a3c] border border-[#2e5bff]/40 text-[#b8c3ff] group-hover:scale-105 transition-transform">
-              <Wrench className="w-5 h-5" />
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-lg bg-[#1f2a3c] border border-[#2e5bff]/40 text-[#b8c3ff] group-hover:scale-105 transition-transform">
+                <Wrench className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-sora text-xl font-bold text-[#d8e3fb] group-hover:text-[#b8c3ff] transition-colors">
+                  DevOps, Tooling & Performance Testing
+                </h3>
+                <p className="font-mono text-xs text-[#c4c5d9]">
+                  Automated CI/CD pipelines, native Xcode/Android Studio
+                  toolchains, and memory leak profiling
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-sora text-xl font-bold text-[#d8e3fb] group-hover:text-[#b8c3ff] transition-colors">
-                DevOps & Tooling
-              </h3>
-              <p className="font-mono text-xs text-[#c4c5d9]">
-                CI/CD, QA, native IDEs
-              </p>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#1f2a3c] border border-[#434656] text-xs font-mono text-[#22c55e] self-start sm:self-auto">
+              <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
+              <span>Production Toolchain</span>
             </div>
           </div>
 
-          <div className="space-y-2 font-mono text-xs text-[#c4c5d9]">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 font-mono text-xs text-[#c4c5d9]">
             {devopsTools.map((tool) => (
               <div
                 key={tool.name}
-                className="flex items-center gap-2 p-2 rounded bg-[#1f2a3c]/40 hover:bg-[#1f2a3c] border border-transparent hover:border-[#434656] transition-all hover:translate-x-1 duration-200"
+                className="flex items-center gap-2 p-2.5 rounded bg-[#1f2a3c]/60 hover:bg-[#1f2a3c] border border-[#434656]/50 hover:border-[#2e5bff] transition-all hover:scale-105 duration-200"
               >
                 <span className="text-[#b8c3ff]">&gt;</span>
-                <span>{tool.name}</span>
+                <span className="text-[#d8e3fb]">{tool.name}</span>
               </div>
             ))}
           </div>

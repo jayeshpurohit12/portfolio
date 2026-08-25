@@ -1,12 +1,21 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+
+const WaveGrid3D = dynamic(
+  () => import("@/components/3d/WaveGrid3D").then((m) => m.WaveGrid3D),
+  { ssr: false },
+);
 
 export const InteractiveBackground: React.FC = () => {
   const spotlightRef = useRef<HTMLDivElement>(null);
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
+    if (!isDesktop) return;
     let animationFrameId: number;
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -26,13 +35,20 @@ export const InteractiveBackground: React.FC = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isDesktop]);
 
   return (
     <div
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
       aria-hidden="true"
     >
+      {/* 3D WebGL Digital Wave Terrain Background (Desktop Only) */}
+      {isDesktop && (
+        <div className="hidden md:block">
+          <WaveGrid3D />
+        </div>
+      )}
+
       {/* High-Performance GPU Cursor Spotlight (Zero React re-render overhead) */}
       <div
         ref={spotlightRef}

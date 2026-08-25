@@ -1,13 +1,29 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { TerminalSimulator } from "@/components/common/TerminalSimulator";
 import { ArrowRight, Terminal, Smartphone, Cpu } from "lucide-react";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+
+const Hero3DCanvas = dynamic(
+  () => import("@/components/3d/Hero3DCanvas").then((m) => m.Hero3DCanvas),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[460px] sm:h-[520px] md:h-[580px] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full border-2 border-[#2e5bff]/30 border-t-[#2e5bff] animate-spin" />
+      </div>
+    ),
+  },
+);
 
 export const HeroSection: React.FC = () => {
+  const isDesktop = useIsDesktop();
+
   return (
     <section
       id="home"
@@ -140,9 +156,23 @@ export const HeroSection: React.FC = () => {
         </a>
       </div>
 
-      {/* Live Interactive Code Terminal / Telemetry Simulator */}
-      <div className="hero-animate-5 w-full mb-10 sm:mb-16 px-1 sm:px-0">
-        <TerminalSimulator />
+      {/* 3D Smartphone Device & Interactive Terminal Telemetry Grid */}
+      <div className="hero-animate-5 w-full mb-10 sm:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center max-w-6xl mx-auto px-1 sm:px-0">
+        {/* 3D Mobile Device (Desktop & Tablet) */}
+        {isDesktop && (
+          <div className="hidden md:flex lg:col-span-5 items-center justify-center">
+            <Hero3DCanvas />
+          </div>
+        )}
+
+        {/* Live Interactive Code Terminal */}
+        <div
+          className={`w-full ${
+            isDesktop ? "lg:col-span-7" : "col-span-12"
+          } flex flex-col justify-center`}
+        >
+          <TerminalSimulator />
+        </div>
       </div>
 
       {/* Highlights Bar with Metric Cards */}
