@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="jp-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#efefff" />
+      <stop offset="50%" stop-color="#b8c3ff" />
+      <stop offset="100%" stop-color="#2e5bff" />
+    </linearGradient>
+    <linearGradient id="border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2e5bff" />
+      <stop offset="100%" stop-color="#152031" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Squircle -->
+  <rect x="1" y="1" width="30" height="30" rx="8" fill="#081425" stroke="url(#border-grad)" stroke-width="1.5" />
+  
+  <!-- Monogram JP Text -->
+  <text x="16" y="21.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="14.5" fill="url(#jp-grad)" text-anchor="middle" letter-spacing="-0.5">JP</text>
+  
+  <!-- Active Node Dot Indicator -->
+  <circle cx="25" cy="7" r="1.75" fill="#22c55e" />
+</svg>
