@@ -196,13 +196,7 @@ export const portfolioData = {
       image: IMAGES.projects.sonastarHealthcare.src,
       imageAlt: IMAGES.projects.sonastarHealthcare.alt,
       platforms: ["Android", "iOS"],
-      technologies: [
-        "React Native",
-        "JavaScript",
-        "Push Notifications",
-        "Offline Sync",
-        "TurboModules",
-      ],
+      technologies: ["React Native", "JavaScript", "TurboModules"],
       highlights: [
         "Architected multi-tenant hospital equipment tracking and asset management dashboard.",
         "Built custom offline-first SQLite sync engine to preserve clinical records during low-connectivity scenarios.",
